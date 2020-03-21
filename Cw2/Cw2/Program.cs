@@ -22,32 +22,38 @@ namespace Cw2
                 while ((line = stream.ReadLine()) != null)
                 {
                     // imie, nazwisko, kierunek studiów ,radzaj studiow, id, data, email, imie matki, imie ojca
-                    string[] kolumny = line.Split(',');
-                    if (kolumny.Length != 9)
+                    string[] columns = line.Split(',');
+                    if (!DataValidator<string>.checkLength(columns, 9))
                     {
-                        Console.WriteLine("{0} -> ten wiersz jest wadliwy!", line);
+                        Logger.LogToFile(line, "Zbyt mała liczba kolumn");
                         continue;
+                    }
+                    for (int i = 0; i < columns.Length; i++)
+                    {
+                        if (DataValidator<string>.checkColumnsContent(columns[i]))
+                        {
+                            Logger.LogToFile(line, "Wiersz niepoprawny, posiadający puste kolumny");
+                            continue;
+                        }
                     }
                     var student = new Student
                     {
-                        Name = kolumny[0],
-                        Surname = kolumny[1],
-                        FiledOfStudy = kolumny[2],
-                        SchoolMode = kolumny[3],
-                        Id = kolumny[4],
-                        DateOfStart = kolumny[5],
-                        Email = kolumny[6],
-                        MothersName = kolumny[7],
-                        FathersName = kolumny[8],
+                        Name = columns[0],
+                        Surname = columns[1],
+                        FiledOfStudy = columns[2],
+                        SchoolMode = columns[3],
+                        Id = columns[4],
+                        DateOfStart = columns[5],
+                        Email = columns[6],
+                        MothersName = columns[7],
+                        FathersName = columns[8],
                     };
                     if (!dataSet.Add(student)){
-                        Console.WriteLine("{0} Taki student już istnieje", student);
+                       // Console.WriteLine("{0} Taki student już istnieje", student);
                     }
                 }
                 Display(dataSet);
             }
-
-
 
             static void Display(HashSet<Student> hashSet)
             {

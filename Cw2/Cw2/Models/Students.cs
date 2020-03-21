@@ -32,7 +32,7 @@ namespace Cw2.Models
         }
         public override string ToString()
         {
-            return Name;
+            return Name +" "+ Surname + " " + Id;
         }
         public string Id
         {

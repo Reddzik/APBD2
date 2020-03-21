@@ -10,9 +10,9 @@ namespace Cw2.Controllers
     {
         public bool Equals([AllowNull] Student firstStudent, [AllowNull] Student secondStudent)
         {
-            if (firstStudent.Imie.Equals(secondStudent.Imie))
-/*                && firstStudent.Imie.Equals(secondStudent.Imie)
-                && firstStudent.Email.Equals(secondStudent.Email))*/
+            if (firstStudent.Name.Equals(secondStudent.Name)
+                && firstStudent.Surname.Equals(secondStudent.Surname)
+                && firstStudent.Id.Equals(secondStudent.Id))
             {
                 return true;
             }
@@ -21,7 +21,7 @@ namespace Cw2.Controllers
 
         public int GetHashCode([DisallowNull] Student obj)
         {
-            return obj.Imie.GetHashCode();
+          return obj.Name.GetHashCode() + obj.Surname.GetHashCode() + obj.Id.GetHashCode();
         }
     }
 }

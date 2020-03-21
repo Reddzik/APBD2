@@ -21,18 +21,27 @@ namespace Cw2
                 string line = null;
                 while ((line = stream.ReadLine()) != null)
                 {
+                    // imie, nazwisko, kierunek studiów ,radzaj studiow, id, data, email, imie matki, imie ojca
                     string[] kolumny = line.Split(',');
-                   // Console.WriteLine(kolumny[0]);
+                    if (kolumny.Length != 9)
+                    {
+                        Console.WriteLine("{0} -> ten wiersz jest wadliwy!", line);
+                        continue;
+                    }
                     var student = new Student
                     {
-                        Imie = kolumny[0],
+                        Name = kolumny[0],
+                        Surname = kolumny[1],
+                        FiledOfStudy = kolumny[2],
+                        SchoolMode = kolumny[3],
+                        Id = kolumny[4],
+                        DateOfStart = kolumny[5],
+                        Email = kolumny[6],
+                        MothersName = kolumny[7],
+                        FathersName = kolumny[8],
                     };
-                    dataSet.Add(student);
                     if (!dataSet.Add(student)){
-                        Console.WriteLine("Powtórzone ======");
-                        Console.WriteLine(student.Imie);
-
-                        Console.WriteLine("Koniec powtórzenia ======");
+                        Console.WriteLine("{0} Taki student już istnieje", student);
                     }
                 }
                 Display(dataSet);
@@ -57,7 +66,7 @@ namespace Cw2
 
             //XML
             /*            var list = new List<Student>();
-                        var st = new Student
+                    ggghujgjokrgy    var st = new Student
                         {
                             Imie = "Jan",
                             Nazwisko = "Kowalski",

@@ -10,23 +10,39 @@ namespace Cw2.Models
         [XmlAttribute(attributeName: "email")]
         public string Email { get; set; }
         [XmlElement(elementName: "fname")]
-        public string Imie { get; set; }
-
+        public string Name { get; set; }
         //propfull + tabx2
         private string _id;
-        private string _nazwisko;
-        public string Nazwisko
+        private string _surname;
+        public string SchoolMode { get; set; }
+        public string FiledOfStudy { get; set; }
+        public string DateOfStart { get; set; }
+        public string MothersName { get; set; }
+        public string FathersName { get; set; }
+
+        
+        public string Surname
         {
-            get { return _nazwisko; }
+            get { return _surname; }
             set
             {
                 if (value == null) throw new ArgumentException();
-                _nazwisko = value;
+                _surname = value;
             }
         }
         public override string ToString()
         {
-            return Imie;
+            return Name;
         }
+        public string Id
+        {
+            get { return _id; }
+            set
+            {
+                if (value == null) throw new ArgumentException();
+                _id = value;
+            }
+        }
+
     }
 }

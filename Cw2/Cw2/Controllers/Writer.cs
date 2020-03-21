@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Cw2.Controllers
 {
-    class Writer
+    public class Writer
     {
         public static void WriteToFile(String path, string content)
         {
@@ -19,5 +19,12 @@ namespace Cw2.Controllers
                 sw.WriteLine(content);
             }
         }
+/*        public void Save(string fileName, List<T> content)
+        {
+            using(var stream = new FileStream(fileName, FileMode.Create))
+            {
+                var XML = new 
+            }
+        }*/
     }
 }

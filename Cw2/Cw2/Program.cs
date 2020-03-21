@@ -53,6 +53,11 @@ namespace Cw2
                     }
                 }
                 Display(dataSet);
+                var list = new List<Student>(dataSet);
+                FileStream writer = new FileStream(@"D:\Proejkty\APBD\Zajęcia 2\cwiczenia_notatki\Cw2\Cw2\Data\dataa.xml", FileMode.Create);
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Student>),
+                                           new XmlRootAttribute("uczelnia"));
+                serializer.Serialize(writer, list);
             }
 
             static void Display(HashSet<Student> hashSet)
@@ -71,20 +76,7 @@ namespace Cw2
             //stream.Dispose();
 
             //XML
-            /*            var list = new List<Student>();
-                    ggghujgjokrgy    var st = new Student
-                        {
-                            Imie = "Jan",
-                            Nazwisko = "Kowalski",
-                            Email = "kowalski@wp.pl"
-                        };
-                        list.Add(st);
-
-                        FileStream writer = new FileStream(@"data.xml", FileMode.Create);
-                        XmlSerializer serializer = new XmlSerializer(typeof(List<Student>),
-                                                   new XmlRootAttribute("uczelnia"));
-                        serializer.Serialize(writer, list);
-                        serializer.Serialize(writer, list);*/
+/*            serializer.Serialize(writer, list);*/
 
         }
     }

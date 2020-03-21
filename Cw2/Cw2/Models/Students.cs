@@ -5,15 +5,22 @@ using System.Xml.Serialization;
 
 namespace Cw2.Models
 {
-    class Student
+    [XmlType(Namespace ="Student")]
+    public class Student
     {
         [XmlAttribute(attributeName: "email")]
         public string Email { get; set; }
         [XmlElement(elementName: "fname")]
         public string Name { get; set; }
         //propfull + tabx2
+
+        [XmlAttribute(attributeName: "id")]
         private string _id;
+
+        [XmlAttribute(attributeName: "surname")]
         private string _surname;
+
+        [XmlAttribute(attributeName: "schoolMode")]
         public string SchoolMode { get; set; }
         public string FiledOfStudy { get; set; }
         public string DateOfStart { get; set; }
@@ -32,7 +39,7 @@ namespace Cw2.Models
         }
         public override string ToString()
         {
-            return Name +" "+ Surname + " " + Id;
+            return Name + " " + Surname + " " + Id;
         }
         public string Id
         {

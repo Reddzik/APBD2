@@ -43,18 +43,17 @@ namespace Cw2
                         FiledOfStudy = columns[2],
                         SchoolMode = columns[3],
                         Id = columns[4],
-                        DateOfStart = columns[5],
+                        Birthday = columns[5],
                         Email = columns[6],
                         MothersName = columns[7],
                         FathersName = columns[8],
                     };
                     if (!dataSet.Add(student)){
-                       // Console.WriteLine("{0} Taki student już istnieje", student);
+                        Logger.LogToFile(line, "Ten student jest duplikatem!");
                     }
                 }
-                Display(dataSet);
                 var list = new List<Student>(dataSet);
-                FileStream writer = new FileStream(@"D:\Proejkty\APBD\Zajęcia 2\cwiczenia_notatki\Cw2\Cw2\Data\dataa.xml", FileMode.Create);
+                FileStream writer = new FileStream(@"D:\Proejkty\APBD\zad2\APBD2\Cw2\Cw2\Data\dataa.xml", FileMode.Create);
                 XmlSerializer serializer = new XmlSerializer(typeof(List<Student>),
                                            new XmlRootAttribute("uczelnia"));
                 serializer.Serialize(writer, list);
